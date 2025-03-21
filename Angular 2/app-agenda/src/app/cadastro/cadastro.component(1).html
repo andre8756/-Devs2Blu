@@ -1,0 +1,48 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+
+      <div class="card shadow">
+        <div class="card-body">
+          <h1 class="text-center mb-4">Cadastro</h1>
+          <p>Faça seu cadastro ou entre com uma conta existente para acessar a agenda online</p>
+
+          <!-- Formulário -->
+          <form (submit)="salvar()">
+            <div class="mb-3 mt-3">
+              <label class="control-form">Insira seu nome:</label>
+              <input type="text" class="form-control" [(ngModel)]="contato.name" name="name" placeholder="Nome completo" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="control-form">Insira seu E-mail:</label>
+              <input type="email" class="form-control" [(ngModel)]="contato.email" name="email" placeholder="E-mail" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="control-form">Insira uma senha forte:</label>
+              <input type="password" class="form-control" [(ngModel)]="contato.password" name="password" placeholder="Garanta que você não vai esquece-la" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="control-form">Seu acesso:</label>
+              <select class="form-control" [(ngModel)]="contato.role" name="role" required>
+                <option value="" disabled selected>Selecione o acesso</option>
+                <option value="user">Usuário</option>
+                <option value="admin">Administrador</option>
+              </select>
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <button type="submit" class="btn btn-primary me-md-2">
+                Cadastrar
+              </button>
+            </div>
+          </form>
+
+          <a routerLink="/login">Fazer login</a>
+
+          <p class="text-danger mt-3 text-center">{{erro}}</p>
+        </div>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<p>Formulário Reativo com Angular!</p>
+<form [formGroup] = "formulario" (ngSubmit)="onSubmit()">
+    
+    <label>Informe Nome</label>
+    <input 
+        type="text"
+        formControlName="nome"
+        required
+        />
+
+    <div *ngIf="formulario.controls.nome.invalid && formulario.controls.nome.touc">
+        O nome é obrigatório
+    </div>
+
+    <label>Informe Email</label>
+    <input type="email" 
+    formControlName="email" 
+    required/>
+
+    <label>Informe Telefone</label>
+    <input type="tel" 
+    formControlName="fone"
+    required
+    />
+
+    <button [disabled]="formulario.invalid">Gravar</button>
+
+</form>

@@ -1,0 +1,23 @@
+{
+  "contatos": [
+    {
+      "id": "9fca",
+      "nome": "maria das dores",
+      "email": "maria.dores@gmail.com",
+      "fone": "(47)9080-8072"
+    },
+    {
+      "id": "84d6",
+      "nome": "André Heriberto Schmitt",
+      "email": "schmitt.andre23@gmail.com",
+      "fone": "47 997238756"
+    },
+    {
+      "id": "a496",
+      "nome": "André",
+      "email": "asdfasdf@gmail.com",
+      "password": "senha forte",
+      "role": "user"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+<p>paginacao de grande volume de dados!</p>
+
+<ol>
+    <li *ngFor="let item of items | paginate:{itemsPerPage:10, currentPage: page}" > {{item}}</li>
+</ol>
+<pagination-controls (pageChange)="page =
+$event"></pagination-controls>

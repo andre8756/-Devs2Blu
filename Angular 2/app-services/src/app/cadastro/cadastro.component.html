@@ -1,0 +1,62 @@
+<div class="container">
+    <div>
+        <h2 class="text-center m-4">Cadastros</h2>
+        <form class="container">
+            <label class="control-form">Escreva seu nome:</label>
+            <input class="form-control mb-2"
+                type="text"
+                placeholder="Seu nome"
+                name="nome"
+                [(ngModel)]="novoNome">
+
+            <label class="control-form">Escreva seu Email:</label>
+            <input class="form-control mb-2"
+                type="email"
+                placeholder="Seu email"
+                name="email"
+                [(ngModel)]="novoEmail">
+
+            <label class="control-form">Escreva seu Telefone:</label>
+            <input class="form-control mb-2"
+                type="text"
+                placeholder="Seu telefone"
+                name="fone"
+                [(ngModel)]="novoFone">
+
+            <div class="mt-4 d-flex justify-content-between">
+                <button class="btn btn-primary px-4" 
+                        type="button"
+                        (click)="inserir()">Salvar</button>
+                <button class="btn btn-outline-secondary" 
+                        type="button"
+                        (click)="cancelar()">Cancelar</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Exibição da tabela de contatos -->
+    <div class="mt-4">
+        <div class="row justify-content-center text-center m-4">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Fone</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let contato of contatos">
+                        <td>{{contato.nome}}</td>
+                        <td>{{contato.email}}</td>
+                        <td>{{contato.fone}}</td>
+                        <td><button (click)="editPessoa()">Editar</button></td>
+                        <td><button (click)="deletaPessoa()">Excluir</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

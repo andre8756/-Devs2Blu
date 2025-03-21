@@ -1,0 +1,17 @@
+<h1 class="text-center m-4" >Trabalhando com formulário template driven</h1>
+
+<div>
+  <form class="container" #f="ngForm" (ngSubmit)="dados(f)">
+    <label>Informe nome</label>
+    <input class="teste form-control" type="text" [(ngModel)]="usuario.nome" name="nome"/>
+    <p class="text-danger">{{erro}}</p>
+
+    <label>Informe Email</label>
+    <input class="teste form-control" type="email" [(ngModel)]="usuario.email" name="email"/>
+
+    <label class="mt-3">Informe Fone</label>
+    <input class="teste form-control mb-2" type="fone" [(ngModel)]="usuario.fone" name="fone"/>
+
+    <input class="btn btn-outline-success mt-3" type="submit" value="enviar"/>
+  </form>
+</div>

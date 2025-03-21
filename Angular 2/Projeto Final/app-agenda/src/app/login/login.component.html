@@ -1,0 +1,35 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+
+      <div class="card shadow">
+        <div class="card-body">
+          <h1 class="text-center mb-4">Login</h1>
+          <p>Entre com a sua conta ou crie uma nova conta para acessar a agenda online</p>
+
+          <!-- Formulário -->
+          <form (submit)="salvar()">
+
+            <div class="mb-3">
+              <label class="control-form">Insira seu E-mail:</label>
+              <input type="email" class="form-control" [(ngModel)]="contato.email" name="email" placeholder="E-mail" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="control-form">Insira sua senha forte:</label>
+              <input type="password" class="form-control" [(ngModel)]="contato.password" name="password" placeholder="Senha da sua conta" required>
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <button type="submit" class="btn btn-primary me-md-2">
+                Entrar
+              </button>
+            </div>
+          </form>
+
+          <a routerLink="">Cadastrar nova conta</a>
+
+          <p class="text-danger mt-3 text-center">{{erro}}</p>
+        </div>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<p class="text-center">Aprendendo sobre diretivas</p>
+<p *ngIf="mostrar">Diretivas no angular</p>
+
+<button class="btn btn-primary" (click)="trocar()">Trocar</button>
+
+<button class="btn btn-danger" (click)="trocar()">Cesta de Fruta</button>
+
+<div class="m-5" *ngIf="mostrar">
+    <ul class="list-group">
+        <li class="list-group-item" *ngFor="let fruta of frutas">{{ fruta }}</li>
+    </ul>
+</div>
+
+<input class="form-control" type="text" [(ngModel)]="newFruta"/>
+<button class="btn btn-outline-success mt-3" (click)="addLista()">Adicionar fruta</button>
+<button class="btn btn-outline-success mt-3" (click)="deleteList()">Remover fruta</button>
+
+
+
+

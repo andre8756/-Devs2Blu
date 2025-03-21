@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="card">
+    <h1 class="mb-5">Gestão de Locais</h1>
+
+    <!-- Formulário -->
+    <form (submit)="salvar()">
+      <input type="text" [(ngModel)]="local.nome" name="nome" placeholder="Nome do Local" required>
+      <input type="text" [(ngModel)]="local.endereco" name="endereco" placeholder="Endereço do local" required>
+      
+      <button type="submit">{{ editando ? 'Atualizar' : 'Adicionar' }}</button>
+      <button type="button" *ngIf="editando" (click)="cancelarEdicao()">Cancelar</button>
+    </form>
+
+    <p class="text-danger mt-3 text-center">{{erro}}</p>
+
+    <!-- Tabela de Locais -->
+    <table class="mt-5">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Endereço</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let local of locais">
+          <td>{{local.nome}}</td>
+          <td>{{local.endereco}}</td>
+          <td>
+            <button class="edit" (click)="editar(local)">Editar</button>
+            <button class="delete" (click)="excluir(local.id)">Excluir</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="back mt-5" (click)="voltar()">Voltar</button>
+  </div>
+</div>

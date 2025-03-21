@@ -1,0 +1,36 @@
+<div class="container">
+  <h1>CRUD de contatos</h1>
+
+  <!-- Formulário -->
+  <form (submit)="salvar()">
+    <input type="text" [(ngModel)]="contato.nome" name="nome" placeholder="Nome" required>
+    <input type="email" [(ngModel)]="contato.email" name="email" placeholder="Email" required>
+    <input type="tel" [(ngModel)]="contato.fone" name="fone" placeholder="Ex:(47)9090-8956" required>
+    <button type="submit">{{ editando ? 'Atualizar' : 'Adicionar' }}</button>
+    <button type="button" *ngIf="editando" (click)="cancelarEdicao()">Cancelar</button>
+  </form>  
+</div>
+
+<p>{{erro}}</p>
+
+<div class="mb-5 mr-5 ml-5">
+  <table>
+    <thead>
+      <tr>
+        <th>Dados</th>
+        <th>Editar</th>
+        <th>Excluir</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items | paginate:{itemsPerPage:10, currentPage: page}">
+        <td>{{item}}</td>
+        <td><button class="edit" (click)="editarItem(item)">Editar</button></td>
+        <td><button class="delete" (click)="excluirItem(item)">Excluir</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<pagination-controls (pageChange)="page = $event"></pagination-controls>

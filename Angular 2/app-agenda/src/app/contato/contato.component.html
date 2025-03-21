@@ -1,0 +1,38 @@
+
+<div class="container">
+  <div class="card">
+    <h1 class="mb-5">Gestão de Contatos</h1>
+
+    <!-- Formulário -->
+    <form (submit)="salvar()">
+      <input type="text" [(ngModel)]="contato.nome" name="nome" placeholder="Nome do Contato" required>
+      <input type="tel" [(ngModel)]="contato.telefone" name="telefone" placeholder="Telefone do contato" required>
+      <input type="email" [(ngModel)]="contato.email" name="email" placeholder="Email do contato" required>
+      <button type="submit">{{ editando ? 'Atualizar' : 'Adicionar' }}</button>
+      <button type="button" *ngIf="editando" (click)="cancelarEdicao()">Cancelar</button>
+    </form>
+
+    <p class="text-danger mt-3 text-center">{{erro}}</p>
+    <table class="mt-5">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Telefone</th>
+          <th>Email</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let contato of contatos">
+          <td>{{contato.nome}}</td>
+          <td>{{contato.telefone}}</td>
+          <td>{{contato.email}}</td>
+          <td><button class="edit" (click)="editar(contato)">Editar</button>
+            <button class="delete" (click)="excluir(contato.id)">Excluir</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="back mt-5" (click)="voltar()">Voltar</button>
+  </div>
+</div>

@@ -1,0 +1,140 @@
+/* agenda.component.css */
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+  padding: 2rem;
+}
+
+h1 {
+  color: #2c3e50;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+form {
+  display: grid;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+input, select {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.Select {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.control-form {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #495057;
+  font-weight: 500;
+}
+
+button {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+button[type="button"] {
+  background-color: #6c757d;
+  color: white;
+}
+
+button[type="button"]:hover {
+  background-color: #5a6268;
+}
+
+.addComponent {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: #4CAF50;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.addComponent:hover {
+  text-decoration: underline;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #dee2e6;
+}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+  font-weight: 600;
+}
+
+td{
+  gap:55px;
+}
+
+.edit, .delete {
+  padding: 0.4rem 0.8rem;
+  margin: 5px 2px;
+  font-size: 0.9rem;
+}
+
+.edit {
+  background-color: #2196F3;
+}
+
+.delete {
+  background-color: #f44336;
+}
+
+.text-danger {
+  color: #dc3545;
+  font-weight: 500;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+  }
+}

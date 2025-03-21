@@ -1,0 +1,12 @@
+<ul>
+    <li *ngFor="let item of paginatedItems">{{item}}</li>
+</ul>
+
+<button
+    (click) = "changePage (currentPage -1)"
+    [disabled]="currentPage === 1" 
+>Anterior</button>
+<span>Página {{currentPage}}</span>
+<button (click)="changePage(currentPage + 1)"
+[disabled]="currentPage >= (items.length /
+pageSize)">Próxima</button>
