@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>App Blog - Editar Comentário</title>
+  <!-- Import Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <!-- Import Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+  <!-- Estilo customizado leve -->
+  <style>
+    body {
+        background-color: #f8f9fa; /* Fundo cinza claro consistente */
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    main {
+        flex: 1;
+    }
+    .card {
+        border: none; /* Remove borda padrão */
+    }
+    .form-label {
+       font-weight: 500; /* Labels destacados */
+    }
+     .card-header {
+        background-color: #e9ecef;
+     }
+  </style>
+</head>
+<body>
+
+<header>
+  <!-- Navbar consistente -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <div class="container"> <!-- Usar container para alinhar -->
+      <a class="navbar-brand mb-0 h1 fs-4" href="/posts">Web Blog</a>
+      <!-- Botão para voltar ao post específico -->
+      <a th:href="@{/posts/{id}(id=${postId})}" class="btn btn-outline-light btn-sm" role="button">
+        <i class="bi bi-arrow-left-circle me-1"></i> Voltar para o Post
+      </a>
+    </div>
+  </nav>
+</header>
+
+<main class="py-5"> <!-- Padding vertical -->
+  <div class="container">
+    <div class="row justify-content-center"> <!-- Centraliza -->
+      <div class="col-md-8 col-lg-7"> <!-- Limita largura -->
+
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb" class="mb-4">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/posts" class="text-decoration-none">Posts</a></li>
+            <!-- Usar #strings.abbreviate para o título do post se for muito longo -->
+            <li class="breadcrumb-item"><a th:href="@{/posts/{id}(id=${postId})}" class="text-decoration-none" th:text="${#strings.abbreviate(postTitulo, 30)} ?: 'Post'">Post</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Editar Comentário</li>
+          </ol>
+        </nav>
+
+        <!-- Card para envolver o formulário -->
+        <div class="card shadow-lg border-light">
+          <div class="card-header py-3">
+            <h4 class="mb-0"><i class="bi bi-chat-left-text-fill me-2"></i>Editar Comentário</h4> <!-- Ícone diferente -->
+          </div>
+          <div class="card-body p-4"> <!-- Mais padding -->
+
+            <!-- Mensagem de Validação (Exemplo) -->
+            <!-- Adapte se necessário, especialmente se erros forem passados via RedirectAttributes -->
+            <!--
+            <div th:if="${param.error}" class="alert alert-danger" role="alert">
+               Ocorreu um erro ao salvar. Verifique o comentário.
+            </div>
+            -->
+
+            <!-- Formulário de Edição -->
+            <!-- Action e Object parecem corretos, apontando para o update e usando o DTO -->
+            <form th:action="@{/posts/{postId}/comments/update/{commentId}(postId=${postId}, commentId=${commentId})}"
+                  th:object="${comentarioEditDto}" method="post">
+
+              <div class="mb-3">
+                <label for="commentText" class="form-label">Seu comentário: <span class="text-danger">*</span></label>
+                <!-- th:field conecta ao campo 'comentario' do DTO 'comentarioEditDto' -->
+                <textarea class="form-control" id="commentText" th:field="*{comentario}" rows="6" required></textarea>
+                <!-- Exibição de erro de validação -->
+                <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('comentario')}" th:errors="*{comentario}">
+                  Erro no comentário
+                </div>
+              </div>
+
+              <small class="form-text text-muted d-block mb-4"><span class="text-danger">*</span> Campo obrigatório</small>
+
+              <!-- Botões de Ação -->
+              <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <!-- Botão Cancelar volta para o post -->
+                <a th:href="@{/posts/{id}(id=${postId})}" class="btn btn-outline-secondary">
+                  <i class="bi bi-x-circle me-1"></i> Cancelar
+                </a>
+                <!-- Botão Salvar com cor de sucesso -->
+                <button type="submit" class="btn btn-success">
+                  <i class="bi bi-check-circle-fill me-1"></i> Salvar Alterações
+                </button>
+              </div>
+
+            </form>
+          </div> <!-- Fim card-body -->
+        </div> <!-- Fim card -->
+
+      </div> <!-- Fim col -->
+    </div> <!-- Fim row -->
+  </div> <!-- Fim container -->
+</main>
+
+<footer class="bg-dark text-white text-center text-lg-start mt-auto py-3">
+  <div class="container">
+    <span class="text-white-50">© 2024 Web Blog. Todos os direitos reservados.</span>
+  </div>
+</footer>
+
+<!-- Import Bootstrap JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+</html>
