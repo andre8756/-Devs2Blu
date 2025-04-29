@@ -1,0 +1,128 @@
+package com.testeUnit2.model;
+
+import com.testeUnit2.repository.ContatoRepository;
+import com.testeUnit2.services.ContatoServices;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.Collections;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+@ExtendWith(MockitoExtension.class)
+public class ContatoTest {
+
+    private Contato contato;
+
+    @InjectMocks
+    private ContatoServices contatoServices;
+
+    @Mock
+    private ContatoRepository contatoRepository;
+
+    @BeforeEach
+    void setup(){
+        contato = new Contato();
+    }
+
+    // Testes com Mockito ---------------------------------------------------------
+
+    @Test
+    public void deveRetornarListaDeContatos(){
+        Contato contato = new Contato("Andre", "teste@gmail.com", "123456");
+        Mockito.when(contatoRepository.findAll()).thenReturn(Collections.singletonList(contato));
+        List<Contato> contatos = contatoServices.listarContatos();
+        System.out.println(contatos);
+
+        Assertions.assertEquals(1, contatos.size()); // testa o número de contatos esperados (1)
+    }
+    }
+
+    @Test
+    @DisplayName("Lançar exeção quando o contato tem menos de tres letras")
+    public void deveLancarExcessaoQndContatoTiverNomeMenorTressLetras() {
+        Contato contato = new Contato("zé", "teste@gmail.com", "123456");
+
+        RuntimeException ex = assertThrows(RuntimeException.class, () -> {
+            contatoServices.salvar(contato);
+        });
+        assertEquals("O nome precisa ter no mínimo 3 letras", ex.getMessage());
+        assertNotNull(ex);
+
+    }
+
+    @Test
+    @DisplayName("Deve salvar o contato")
+    public void deveRetornarOEmail() {
+        Contato contato = new Contato("André", "teste@gmail.com", "123456");
+
+        RuntimeException ex = assertThrows(RuntimeException.class, () -> {
+            this.contatoServices.salvar(contato);
+        });
+
+        System.out.println(contatoServices.listarContatos());
+
+        Assertions.assertEquals("Email Inválido!",ex.getMessage());
+    }
+
+    // Testes com JUnit ---------------------------------------------------------
+
+    @Test
+    @DisplayName("Deve lançar um RuntimeException se nome com menos de três caracteres")
+    public void DeveAutenticarOhNome(){
+        RuntimeException ex = assertThrows(RuntimeException.class, () -> {
+            contato.setNome("Zé");
+        });
+        assertEquals("O nome precisa ter no mínimo 3 letras", ex.getMessage());
+        assertNotNull(ex);
+    }
+
+    @Test
+    void ShouldReturnNomeWhenSetNameWithMoreTwoLetters(){
+        contato.setNome("Ana");
+        assertEquals("Ana", contato.getNome());
+    }
+
+    /*
+    @Test
+    void ShouldAthTheEmail(){
+        RuntimeException ex = assertThrows(RuntimeException.class, () -> {
+            contato.setEmail("teste@gmail.com");
+        });
+        assertEquals("Email Inválido!", ex.getMessage());
+        assertNotNull(ex);
+    }
+     */
+
+
+
+    @Test
+    void ShouldReturnTheEmail(){
+        contato.setEmail("teste@gmail.com");
+        assertEquals("teste@gmail.com", contato.getEmail());
+    }
+
+    @Test
+    void ShouldAthThePassword(){
+        RuntimeException ex = assertThrows(RuntimeException.class, () -> {
+            contato.setSenha("123456");
+        });
+        assertEquals("A senha deve ter no mínimo 5 caracteres", ex.getMessage());
+        assertNotNull(ex);
+    }
+
+    @Test
+    void ShouldReturnThePassword(){
+        contato.setSenha("123456");
+        assertEquals("123456", contato.getSenha());
+    }
+
+}
